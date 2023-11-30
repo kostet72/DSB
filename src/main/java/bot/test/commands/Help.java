@@ -1,27 +1,33 @@
 package bot.test.commands;
 
-import net.dv8tion.jda.api.entities.Guild;
+import bot.test.ICommand;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
-import net.dv8tion.jda.api.events.session.ReadyEvent;
-import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import org.jetbrains.annotations.NotNull;
+import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 
-public class Help extends ListenerAdapter {
+import java.util.List;
 
-    @Override // When Bot is started
-    public void onReady(@NotNull ReadyEvent event) {
-
-        /* Server ID */ Guild guild = event.getJDA().getGuildById(1034094561649238078L);
-        /* Send message on "/help" */ guild.upsertCommand("help", "Description and capabilities of the bot").queue();
-    }
-
-    @Override // Send info about bot by using "/help"
-    public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
-
-        if (!event.getName().equals("help")) return;
-        event.reply(help).queue();
-    }
+public class Help implements ICommand {
 
     // TODO: write the information
     String help = "no help, sir";
+
+    @Override // Name of the command
+    public String getName() {
+        return "помощь";
+    }
+
+    @Override // Description of the command
+    public String getDescription() {
+        return "Описание и возможности бота";
+    }
+
+    @Override // Options for the command
+    public List<OptionData> getOptions() {
+        return null;
+    }
+
+    @Override // Execute command
+    public void execute(SlashCommandInteractionEvent event) {
+        event.reply(help).queue();
+    }
 }
