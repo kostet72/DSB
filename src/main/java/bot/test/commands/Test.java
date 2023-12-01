@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.interactions.components.buttons.Button;
 import java.util.List;
 
 public class Test implements ICommand {
+
     @Override // Name of the command
     public String getName() {
         return "тест";
@@ -27,8 +28,8 @@ public class Test implements ICommand {
     public void execute(SlashCommandInteractionEvent event) {
 
         // Creating buttons with their ID
-        Button yesButton = Button.primary("yes", "Да");
-        Button noButton = Button.primary("no", "Нет");
+        Button yesButton = Button.success("yes", "Да");
+        Button noButton = Button.danger("no", "Нет");
 
         // Creating the message with question and answers
         event.reply("Ты живой?").addActionRow(yesButton, noButton).queue();
