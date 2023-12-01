@@ -3,22 +3,19 @@ package bot.test.commands;
 import bot.test.ICommand;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
+import net.dv8tion.jda.api.interactions.components.buttons.Button;
 
 import java.util.List;
 
-public class Help implements ICommand {
-
-    // TODO: write the information
-    /* Answer to the command */ String help = "no help, sir";
-
+public class Test implements ICommand {
     @Override // Name of the command
     public String getName() {
-        return "помощь";
+        return "тест";
     }
 
     @Override // Description of the command
     public String getDescription() {
-        return "Описание и возможности бота";
+        return "Отвечай на вопросы";
     }
 
     @Override // Options for the command
@@ -28,6 +25,12 @@ public class Help implements ICommand {
 
     @Override // Execute command
     public void execute(SlashCommandInteractionEvent event) {
-        event.reply(help).queue();
+
+        // Creating buttons with their ID
+        Button yesButton = Button.primary("yes", "Да");
+        Button noButton = Button.primary("no", "Нет");
+
+        // Creating the message with question and answers
+        event.reply("Ты живой?").addActionRow(yesButton, noButton).queue();
     }
 }
