@@ -9,7 +9,7 @@ import java.util.List;
 public class Help implements ICommand {
 
     // TODO: write the information
-    /* Answer to the command */ String help = "no help, sir";
+    /* Answer to the command */ String help = "Извини :( Эта информация ещё пополняется";
 
     @Override // Name of the command
     public String getName() {

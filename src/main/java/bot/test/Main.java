@@ -1,9 +1,6 @@
 package bot.test;
 
-import bot.test.commands.CreateEvent;
-import bot.test.commands.Test;
-import bot.test.commands.Help;
-import bot.test.commands.ShowUserInfo;
+import bot.test.commands.*;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -22,6 +19,7 @@ public class Main {
         manager.add(new Help());
         manager.add(new ShowUserInfo());
         manager.add(new CreateEvent());
+        manager.add(new CreateChangeLog());
         manager.add(new Test());
         jda.addEventListener(manager);
         jda.addEventListener(new Listener());
