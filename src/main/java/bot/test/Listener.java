@@ -90,7 +90,8 @@ public class Listener extends ListenerAdapter {
             changeLogBuilder.addField("Версия:", version, true);
             changeLogBuilder.addField("Автор:", author, true);
             changeLogBuilder.addField("Список изменений:", changes, false);
-            changeLogBuilder.setFooter("Тыкай по синему тексту, чтобы перейти на гитХаб нашего проекта");
+            changeLogBuilder.addBlankField(false);
+            changeLogBuilder.setFooter("Тыкай по синему тексту, чтобы перейти на GitHub проекта");
             changeLogBuilder.setUrl("https://github.com/kostet72/DSB");
 
             // Send change log
