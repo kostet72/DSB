@@ -96,7 +96,6 @@ public class Listener extends ListenerAdapter {
 
             // Send change log
             event.replyEmbeds(changeLogBuilder.build()).queue();
-
         }
     }
 }
