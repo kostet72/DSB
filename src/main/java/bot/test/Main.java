@@ -21,7 +21,7 @@ public class Main {
         manager.add(new ShowUserInfo());
         manager.add(new CreateEvent());
         manager.add(new CreateChangeLog());
-        manager.add(new Test());
+        manager.add(new RPSGame());
         jda.addEventListener(manager);
         jda.addEventListener(new Listener());
     }

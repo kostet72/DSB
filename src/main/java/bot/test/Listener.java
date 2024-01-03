@@ -10,16 +10,72 @@ import net.dv8tion.jda.api.interactions.modals.ModalMapping;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
+import java.util.Random;
 
 public class Listener extends ListenerAdapter {
 
     @Override // When button is clicked
     public void onButtonInteraction(@NotNull ButtonInteractionEvent event) {
 
-        if (event.getButton().getId().equals("yes")) {
-            event.reply("Понятно").queue();
-        } else if (event.getButton().getId().equals("no")) {
-            event.reply("Круто, я тоже").queue();
+        // All possible moves
+        String[] moves = {"rock", "scissors", "paper"};
+
+        // Make random move as a Bot
+        String randomMove = moves[new Random().nextInt(moves.length)];
+
+        // Receive player's move
+        String button = event.getButton().getId();
+        assert button != null;
+
+        // Translation
+        String botMove = switch (randomMove) {
+            case "rock" -> "Камень";
+            case "scissors" -> "Ножницы";
+            case "paper" -> "Бумагу";
+            default -> "error";
+        };
+
+        // Announce the move made by the Bot
+        String move = "Бы-ла не бы-ла! Я выбираю " + botMove + "!\n";
+
+        // Replies to the outcome of the game
+        String draw = "Чтож, похоже у нас ничья. Давай сыграем ещё раз";
+        String botLoses = "Ты победил. Ну ничего, в следующий раз я точно тебя одолею!";
+        String botWins = "Ха-ха, так-то! Я победила!";
+
+        // If the Bot and player chose the same move
+        if (button.equals(randomMove)) {
+            event.reply(move + draw).queue();
+        }
+
+        // Player chose rock
+        else if (button.equals("rock")) {
+
+            if (randomMove.equals("scissors")) {
+                event.reply(move + botLoses).queue();
+            } else if (randomMove.equals("paper")) {
+                event.reply(move + botWins).queue();
+            }
+        }
+
+        // Player chose scissors
+        else if (button.equals("scissors")) {
+
+            if (randomMove.equals("rock")) {
+                event.reply(move + botWins).queue();
+            } else if (randomMove.equals("paper")) {
+                event.reply(move + botLoses).queue();
+            }
+        }
+
+        // Player chose paper
+        else if (button.equals("paper")) {
+
+            if (randomMove.equals("rock")) {
+                event.reply(move + botLoses).queue();
+            } else if (randomMove.equals("scissors")) {
+                event.reply(move + botWins).queue();
+            }
         }
 
         // Disable buttons after usage
